@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jiya Jagya | Economics & Data Analysis</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0d0f;
+            color: #e8eaed;
+            line-height: 1.7;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 22px 7%;
+            background: rgba(11, 13, 15, 0.92);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #1d2228;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #31c45a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #aab1ba;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #31c45a;
+        }
+
+        /* GENERAL */
+
+        section {
+            padding: 110px 7%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .section-label {
+            color: #31c45a;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: normal;
+            line-height: 1.05;
+            margin-bottom: 55px;
+        }
+
+        .section-title em {
+            color: #aeb5bf;
+            font-weight: normal;
+        }
+
+        /* HERO */
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 130px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 70px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .availability {
+            display: inline-block;
+            border: 1px solid #267d3e;
+            color: #31c45a;
+            padding: 7px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(65px, 9vw, 125px);
+            line-height: 0.9;
+            font-weight: normal;
+        }
+
+        .hero h1 span {
+            color: #31c45a;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            margin-top: 30px;
+            color: #9da5af;
+            letter-spacing: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin-top: 25px;
+            color: #8e969f;
+            font-size: 17px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 13px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #31a94c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3dcc5e;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid #3a4149;
+            color: #ddd;
+        }
+
+        .btn-secondary:hover {
+            border-color: #31c45a;
+            color: #31c45a;
+        }
+
+        /* HERO VISUAL */
+
+        .visual {
+            height: 420px;
+            position: relative;
+            border: 1px solid #1e252c;
+            background: #11151a;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .visual-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(#20262d 1px, transparent 1px),
+                linear-gradient(90deg, #20262d 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.35;
+        }
+
+        .chart {
+            position: absolute;
+            bottom: 55px;
+            left: 50px;
+            right: 40px;
+            height: 220px;
+        }
+
+        .line {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .line svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .stat {
+            position: absolute;
+            background: #171c22;
+            border: 1px solid #29313a;
+            padding: 16px 20px;
+            border-radius: 10px;
+            z-index: 3;
+        }
+
+        .stat small {
+            color: #737c87;
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .stat strong {
+            color: #31c45a;
+            font-size: 25px;
+        }
+
+        .stat-one {
+            top: 35px;
+            right: 30px;
+        }
+
+        .stat-two {
+            top: 125px;
+            left: 25px;
+        }
+
+        .stat-three {
+            bottom: 25px;
+            right: 40px;
+        }
+
+        /* ABOUT */
+
+        .about-content {
+            max-width: 900px;
+        }
+
+        .about-content p {
+            color: #a1a9b2;
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* EDUCATION */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: #151a20;
+            border: 1px solid #252c34;
+            border-radius: 10px;
+            padding: 28px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #31a94c;
+        }
+
+        .card-year {
+            color: #31c45a;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .card p {
+            color: #7f8994;
+            font-size: 14px;
+        }
+
+        /* EXPERIENCE */
+
+        .experience-item {
+            border-bottom: 1px solid #252b31;
+            padding: 35px 0;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .experience-header h3 {
+            font-size: 22px;
+        }
+
+        .date {
+            color: #31c45a;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .company {
+            color: #7f8994;
+            margin: 4px 0 20px;
+        }
+
+        .experience-item ul {
+            padding-left: 20px;
+            color: #9ba3ac;
+        }
+
+        .experience-item li {
+            margin-bottom: 8px;
+        }
+
+        /* PROJECTS */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            background: #151a20;
+            border: 1px solid #252c34;
+            border-radius: 10px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            border-color: #31a94c;
+        }
+
+        .project-number {
+            color: #31c45a;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+        .project h3 {
+            margin: 15px 0 10px;
+            font-size: 23px;
+        }
+
+        .project p {
+            color: #8e969f;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            border: 1px solid #303840;
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: #aeb5bd;
+            font-size: 11px;
+        }
+
+        /* SKILLS */
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-box {
+            background: #151a20;
+            border: 1px solid #252c34;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .skill-box h4 {
+            color: #31c45a;
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .skill {
+            border: 1px solid #343b44;
+            padding: 6px 13px;
+            border-radius: 5px;
+            color: #c5cad0;
+            font-size: 13px;
+        }
+
+        /* CONTACT */
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-text p {
+            color: #929aa4;
+            max-width: 550px;
+            margin-bottom: 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .contact-link {
+            border: 1px solid #343b43;
+            padding: 10px 18px;
+            color: #c9ced3;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .contact-link:hover {
+            border-color: #31c45a;
+            color: #31c45a;
+        }
+
+        .contact-card {
+            background: #151a20;
+            border: 1px solid #252c34;
+            padding: 35px;
+            border-radius: 10px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 20px;
+        }
+
+        .contact-card p {
+            color: #8e969f;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #20262c;
+            padding: 25px 7%;
+            display: flex;
+            justify-content: space-between;
+            color: #69727c;
+            font-size: 12px;
+        }
+
+        footer span {
+            color: #31c45a;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .visual {
+                height: 320px;
+            }
+
+            .cards,
+            .project-grid,
+            .skill-grid,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 70px;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">Jiya <span>Jagya</span></div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home">
+
+    <div class="hero">
+
+        <div>
+
+            <div class="availability">
+                ● OPEN TO OPPORTUNITIES
+            </div>
+
+            <h1>
+                Jiya<br>
+                <span>Jagya</span>
+            </h1>
+
+            <div class="hero-subtitle">
+                ECONOMICS · DATA · RESEARCH
+            </div>
+
+            <p class="hero-description">
+                Economics postgraduate interested in data analysis,
+                econometrics and research. I enjoy using quantitative
+                methods and data to understand economic and business
+                problems.
+            </p>
+
+            <div class="buttons">
+                <a href="#projects" class="btn btn-primary">
+                    View Projects
+                </a>
+
+                <a href="#contact" class="btn btn-secondary">
+                    Get In Touch
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- VISUAL -->
+
+        <div class="visual">
+
+            <div class="visual-grid"></div>
+
+            <div class="stat stat-one">
+                <small>ECONOMICS</small>
+                <strong>MA</strong>
+            </div>
+
+            <div class="stat stat-two">
+                <small>DATA</small>
+                <strong>∞</strong>
+            </div>
+
+            <div class="stat stat-three">
+                <small>RESEARCH</small>
+                <strong>+</strong>
+            </div>
+
+            <div class="chart">
+
+                <div class="line">
+
+                    <svg viewBox="0 0 500 220"
+                         preserveAspectRatio="none">
+
+                        <polyline
+                            points="0,190 70,140 130,155 200,90 270,115 340,55 420,75 500,20"
+                            fill="none"
+                            stroke="#31c45a"
+                            stroke-width="4"
+                        />
+
+                        <polyline
+                            points="0,200 500,50"
+                            fill="none"
+                            stroke="#3977ad"
+                            stroke-width="2"
+                        />
+
+                        <circle cx="0" cy="190" r="6" fill="#31c45a"/>
+                        <circle cx="70" cy="140" r="6" fill="#31c45a"/>
+                        <circle cx="130" cy="155" r="6" fill="#31c45a"/>
+                        <circle cx="200" cy="90" r="6" fill="#31c45a"/>
+                        <circle cx="270" cy="115" r="6" fill="#31c45a"/>
+                        <circle cx="340" cy="55" r="6" fill="#31c45a"/>
+                        <circle cx="420" cy="75" r="6" fill="#31c45a"/>
+                        <circle cx="500" cy="20" r="6" fill="#31c45a"/>
+
+                    </svg>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-label">— ABOUT ME</div>
+
+    <h2 class="section-title">
+        Who I<br>
+        <em>Am</em>
+    </h2>
+
+    <div class="about-content">
+
+        <p>
+            I am an <span class="highlight">Economics postgraduate</span>
+            with a strong interest in quantitative analysis,
+            econometrics, economic research and data-driven
+            decision making.
+        </p>
+
+        <p>
+            My academic background has given me a foundation in
+            economic theory, statistics and quantitative methods.
+            I am currently developing practical skills in
+            <span class="highlight">Python, SQL, Excel and data visualization</span>
+            to apply these concepts to real-world datasets.
+        </p>
+
+        <p>
+            I am particularly interested in understanding economic
+            and business problems through data, identifying patterns,
+            and communicating insights clearly.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- EDUCATION -->
+
+<section id="education">
+
+    <div class="section-label">— EDUCATION</div>
+
+    <h2 class="section-title">
+        Academic<br>
+        <em>Background</em>
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-year">YOUR YEAR</div>
+
+            <h3>MA / MSc Economics</h3>
+
+            <p>
+                University Name
+            </p>
+
+            <p>
+                Add your specialization or relevant coursework here.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-year">YOUR YEAR</div>
+
+            <h3>BA Economics</h3>
+
+            <p>
+                University / College Name
+            </p>
+
+            <p>
+                Add your relevant academic achievements here.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-year">YOUR YEAR</div>
+
+            <h3>Class XII</h3>
+
+            <p>
+                School Name
+            </p>
+
+            <p>
+                Add percentage if you want to display it.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+<section id="experience">
+
+    <div class="section-label">— EXPERIENCE</div>
+
+    <h2 class="section-title">
+        Work<br>
+        <em>Experience</em>
+    </h2>
+
+
+    <div class="experience-item">
+
+        <div class="experience-header">
+
+            <div>
+                <h3>Research / Internship Experience</h3>
+
+                <div class="company">
+                    Organisation Name
+                </div>
+            </div>
+
+            <div class="date">
+                MONTH YEAR — MONTH YEAR
+            </div>
+
+        </div>
+
+
+        <ul>
+
+            <li>
+                Describe the main responsibility or research task.
+            </li>
+
+            <li>
+                Mention the datasets, analytical methods or tools
+                you worked with.
+            </li>
+
+            <li>
+                Mention a concrete outcome or contribution where
+                applicable.
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="section-label">— PROJECTS</div>
+
+    <h2 class="section-title">
+        Selected<br>
+        <em>Projects</em>
+    </h2>
+
+
+    <div class="project-grid">
+
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT 01
+            </div>
+
+            <h3>Economic Data Analysis</h3>
+
+            <p>
+                An analysis of an economic dataset using Python,
+                including data cleaning, exploratory analysis
+                and visualization.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">Python</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">Matplotlib</span>
+                <span class="tag">Economics</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT 02
+            </div>
+
+            <h3>Econometric Analysis</h3>
+
+            <p>
+                An empirical economics project using statistical
+                methods to investigate relationships between
+                economic variables.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">Python / R</span>
+                <span class="tag">Econometrics</span>
+                <span class="tag">Statistics</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT 03
+            </div>
+
+            <h3>SQL Data Analysis</h3>
+
+            <p>
+                A practical SQL project involving data extraction,
+                filtering, aggregation and analytical queries.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">SQL</span>
+                <span class="tag">Data Analysis</span>
+                <span class="tag">Database</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="project">
+
+            <div class="project-number">
+                PROJECT 04
+            </div>
+
+            <h3>Interactive Dashboard</h3>
+
+            <p>
+                A data visualization project designed to present
+                important trends and insights through an interactive
+                dashboard.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">Power BI</span>
+                <span class="tag">Excel</span>
+                <span class="tag">Visualization</span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="section-label">— SKILLS</div>
+
+    <h2 class="section-title">
+        Technical<br>
+        <em>Proficiency</em>
+    </h2>
+
+
+    <div class="skill-grid">
+
+
+        <div class="skill-box">
+
+            <h4>PROGRAMMING & QUERYING</h4>
+
+            <div class="skill-list">
+
+                <span class="skill">Python</span>
+                <span class="skill">SQL</span>
+                <span class="skill">R</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-box">
+
+            <h4>DATA ANALYSIS</h4>
+
+            <div class="skill-list">
+
+                <span class="skill">Pandas</span>
+                <span class="skill">NumPy</span>
+                <span class="skill">Statistics</span>
+                <span class="skill">Econometrics</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-box">
+
+            <h4>VISUALIZATION & BI</h4>
+
+            <div class="skill-list">
+
+                <span class="skill">MS Excel</span>
+                <span class="skill">Power BI</span>
+                <span class="skill">Tableau</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-box">
+
+            <h4>CORE STRENGTHS</h4>
+
+            <div class="skill-list">
+
+                <span class="skill">Economic Research</span>
+                <span class="skill">Data Analysis</span>
+                <span class="skill">Quantitative Analysis</span>
+                <span class="skill">Research</span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="section-label">— CONTACT</div>
+
+    <h2 class="section-title">
+        Let's<br>
+        <em>Connect</em>
+    </h2>
+
+
+    <div class="contact-container">
+
+
+        <div class="contact-text">
+
+            <p>
+                I am currently exploring opportunities in data
+                analysis, economic research, business analytics
+                and related fields.
+            </p>
+
+            <div class="contact-links">
+
+                <a href="#" class="contact-link">
+                    LinkedIn
+                </a>
+
+                <a href="https://github.com/jiyajagya2002-cmd"
+                   class="contact-link">
+                    GitHub
+                </a>
+
+                <a href="mailto:YOUR-EMAIL@example.com"
+                   class="contact-link">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h3>Interested in working together?</h3>
+
+            <p>
+                Feel free to reach out regarding internships,
+                entry-level opportunities, research projects
+                or data-related work.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        <strong>Jiya <span>Jagya</span></strong>
+    </div>
+
+    <div>
+        Economics · Data · Research
+    </div>
+
+    <div>
+        © 2026
+    </div>
+
+</footer>
+
+
+</body>
+</html>
